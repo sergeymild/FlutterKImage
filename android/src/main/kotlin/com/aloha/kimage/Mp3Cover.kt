@@ -19,6 +19,7 @@ class Mp3Cover : RequestHandler() {
         try {
             retriever.setDataSource(path)
             val data = retriever.embeddedPicture
+            if (data == null) return null
             return Result(BitmapFactory.decodeByteArray(data, 0, data.size), Picasso.LoadedFrom.NETWORK)
         } finally {
             retriever.release()
