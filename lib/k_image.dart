@@ -24,7 +24,7 @@ class KImage {
       "height": height,
       "quality": quality
     };
-    if (_debug) {
+    if (debug) {
       if (!skipFetchDocumentsFolder) print('documentsFolder: $documentsFolder');
       print('loadImageWithParams: $params');
     }
