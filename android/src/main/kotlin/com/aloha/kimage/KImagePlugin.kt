@@ -80,6 +80,10 @@ class KImagePlugin : MethodCallHandler {
             loader.resize(width, height)
         }
         val bitmap = loader.get()
+        if (bitmap == null) {
+            result.error("", null, null)
+            return
+        }
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, quality ?: 100, outputStream)
         result.success(outputStream.toByteArray())
