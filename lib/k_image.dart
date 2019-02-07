@@ -12,7 +12,7 @@ class KImage {
       int height,
       int quality,
       bool skipFetchDocumentsFolder = true,
-      bool debug = true}) async {
+      bool debug = false}) async {
     String documentsFolder = "";
     if (!skipFetchDocumentsFolder) {
       documentsFolder = await _channel.invokeMethod("documentsFolder");
@@ -24,7 +24,7 @@ class KImage {
       "height": height,
       "quality": quality
     };
-    if (debug) {
+    if (_debug) {
       if (!skipFetchDocumentsFolder) print('documentsFolder: $documentsFolder');
       print('loadImageWithParams: $params');
     }

@@ -14,6 +14,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    KImage.debug
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
