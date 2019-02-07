@@ -1,6 +1,7 @@
 package com.aloha.kimage
 
 import android.graphics.Bitmap
+import android.os.Environment
 import android.os.Handler
 import android.os.HandlerThread
 import com.squareup.picasso.Picasso
@@ -20,6 +21,10 @@ class KImagePlugin : MethodCallHandler {
 
     private val handler = Handler(handleThread.looper)
 
+    private val externalAbsolutePath by lazy {
+        Environment.getExternalStorageDirectory().absolutePath
+    }
+
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar) {
@@ -29,6 +34,11 @@ class KImagePlugin : MethodCallHandler {
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {
+        if (call.method == "documentsFolder") {
+            result.success(externalAbsolutePath)
+            return
+        }
+
         if (call.method == "loadImageFromLocalPath") {
 
             handler.post {

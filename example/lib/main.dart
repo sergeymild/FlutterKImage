@@ -22,10 +22,11 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: FutureBuilder<MemoryImage>(
               future: KImage.loadFromLocalPath(
-                  path: "/storage/emulated/0/tevin-trinh-972590-unsplash.jpg",
+                  path: "nasa-89125-unsplash.jpg",
                   width: 300,
                   height: 300,
-                  quality: 100),
+                  quality: 100,
+                  skipFetchDocumentsFolder: false),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Text("load");
