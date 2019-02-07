@@ -14,7 +14,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    KImage.debug
 
     return MaterialApp(
       home: Scaffold(
@@ -24,11 +23,11 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: FutureBuilder<MemoryImage>(
               future: KImage.loadFromLocalPath(
-                  path: "nasa-89125-unsplash.jpg",
+                  path: "/storage/emulated/0/AlohaUserDownloads/Avicii - Wake Me Up (Official Video).mp3",
                   width: 300,
                   height: 300,
                   quality: 100,
-                  skipFetchDocumentsFolder: false),
+                  isMp3Artwork: true),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Text("load");

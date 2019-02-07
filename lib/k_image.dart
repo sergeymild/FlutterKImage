@@ -12,6 +12,7 @@ class KImage {
       int height,
       int quality,
       bool skipFetchDocumentsFolder = true,
+      bool isMp3Artwork = false,
       bool debug = false}) async {
     String documentsFolder = "";
     if (!skipFetchDocumentsFolder) {
@@ -29,8 +30,10 @@ class KImage {
       print('loadImageWithParams: $params');
     }
 
+    final callMethod = isMp3Artwork ? "fetchArtworkFromLocalPath" : "loadImageFromLocalPath";
+
     final List<int> bytes =
-        await _channel.invokeMethod('loadImageFromLocalPath', params);
+        await _channel.invokeMethod(callMethod, params);
     final image = MemoryImage(bytes);
     return image;
   }
