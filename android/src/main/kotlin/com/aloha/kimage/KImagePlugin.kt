@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.os.Environment
 import android.os.Handler
 import android.os.HandlerThread
+import android.util.LruCache
 import com.squareup.picasso.Picasso
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -14,6 +15,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 
 class KImagePlugin : MethodCallHandler {
+    val cache = LruCache<String, ByteArray>(20)
 
     private val handleThread = HandlerThread("KImagePlugin").also {
         it.start()
@@ -47,13 +49,19 @@ class KImagePlugin : MethodCallHandler {
         val height = call.argument<Int>("height")
         val quality = call.argument<Int>("quality")
 
-        if (localPath == null || !File(localPath).exists()) {
+        val file = File(localPath)
+        if (localPath == null || !file.exists()) {
             result.error("LocalPath is empty", null, null)
             return
         }
 
         if (call.method == "fetchArtworkFromLocalPath") {
             localPath = "mp3_artwork_$localPath"
+            cache[localPath]?.let {
+                result.success(it)
+                return
+            }
+            Picasso.get().cancelTag(localPath)
             handler.post {
                 loadImage(localPath, width, height, quality, result)
             }
@@ -62,7 +70,11 @@ class KImagePlugin : MethodCallHandler {
         }
 
         if (call.method == "loadImageFromLocalPath") {
-
+            cache[localPath]?.let {
+                result.success(it)
+                return
+            }
+            Picasso.get().cancelTag(localPath)
             handler.post {
                 loadImage(localPath, width, height, quality, result)
             }
@@ -75,7 +87,13 @@ class KImagePlugin : MethodCallHandler {
     }
 
     private fun loadImage(localPath: String?, width: Int?, height: Int?, quality: Int?, result: Result) {
+        if (localPath == null) {
+            result.error("", null, null)
+            return
+        }
+
         val loader = Picasso.get().load(File(localPath))
+        loader.tag(localPath)
         if (width != null && height != null) {
             loader.resize(width, height)
         }
@@ -86,6 +104,8 @@ class KImagePlugin : MethodCallHandler {
         }
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, quality ?: 100, outputStream)
-        result.success(outputStream.toByteArray())
+        val bytes = outputStream.toByteArray()
+        cache.put(localPath, bytes)
+        result.success(bytes)
     }
 }
