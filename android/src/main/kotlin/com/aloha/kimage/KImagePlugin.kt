@@ -1,28 +1,18 @@
 package com.aloha.kimage
 
-import android.graphics.Bitmap
 import android.os.Environment
-import android.os.Handler
-import android.os.HandlerThread
-import android.util.LruCache
-import com.squareup.picasso.Picasso
+import com.aloha.kimage.loader.AndroidUtilities
+import com.aloha.kimage.loader.ImageLoader
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
-import java.io.ByteArrayOutputStream
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.File
 
 class KImagePlugin : MethodCallHandler {
-    val cache = LruCache<String, ByteArray>(20)
-
-    private val handleThread = HandlerThread("KImagePlugin").also {
-        it.start()
-    }
-
-    private val handler = Handler(handleThread.looper)
-
     private val externalAbsolutePath by lazy {
         Environment.getExternalStorageDirectory().absolutePath
     }
@@ -30,9 +20,7 @@ class KImagePlugin : MethodCallHandler {
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar) {
-            val builder = Picasso.Builder(registrar.activeContext().applicationContext)
-            builder.addRequestHandler(Mp3Cover())
-            Picasso.setSingletonInstance(builder.build())
+            AndroidUtilities.context = registrar.activeContext().applicationContext
             val channel = MethodChannel(registrar.messenger(), "k_image")
             channel.setMethodCallHandler(KImagePlugin())
         }
@@ -44,10 +32,9 @@ class KImagePlugin : MethodCallHandler {
             return
         }
 
-        var localPath = call.argument<String>("path")
+        val localPath = call.argument<String>("path")
         val width = call.argument<Int>("width")
         val height = call.argument<Int>("height")
-        val quality = call.argument<Int>("quality")
 
         val file = File(localPath)
         if (localPath == null || !file.exists()) {
@@ -55,57 +42,23 @@ class KImagePlugin : MethodCallHandler {
             return
         }
 
+        var type = -1
         if (call.method == "fetchArtworkFromLocalPath") {
-            localPath = "mp3_artwork_$localPath"
-            cache[localPath]?.let {
+            type = ImageLoader.MEDIA_DIR_AUDIO
+
+        } else if (call.method == "loadImageFromLocalPath") {
+            type = ImageLoader.MEDIA_DIR_IMAGE
+        }
+
+        if (type == -1) {
+            result.notImplemented()
+            return
+        }
+
+        GlobalScope.launch {
+            ImageLoader.generateWebThumbnail(type, localPath, localPath.substringAfterLast("/"), width, height)?.let {
                 result.success(it)
-                return
             }
-            Picasso.get().cancelTag(localPath)
-            handler.post {
-                loadImage(localPath, width, height, quality, result)
-            }
-
-            return
         }
-
-        if (call.method == "loadImageFromLocalPath") {
-            cache[localPath]?.let {
-                result.success(it)
-                return
-            }
-            Picasso.get().cancelTag(localPath)
-            handler.post {
-                loadImage(localPath, width, height, quality, result)
-            }
-
-            return
-        }
-
-
-        result.notImplemented()
-    }
-
-    private fun loadImage(localPath: String?, width: Int?, height: Int?, quality: Int?, result: Result) {
-        if (localPath == null) {
-            result.error("", null, null)
-            return
-        }
-
-        val loader = Picasso.get().load(File(localPath))
-        loader.tag(localPath)
-        if (width != null && height != null) {
-            loader.resize(width, height)
-        }
-        val bitmap = loader.get()
-        if (bitmap == null) {
-            result.error("", null, null)
-            return
-        }
-        val outputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, quality ?: 100, outputStream)
-        val bytes = outputStream.toByteArray()
-        cache.put(localPath, bytes)
-        result.success(bytes)
     }
 }
