@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'k_image'
-  s.version          = '0.0.2'
+  s.version          = '0.0.3'
   s.summary          = 'A new Flutter plugin.'
   s.description      = <<-DESC
 A new Flutter plugin.
@@ -15,7 +15,7 @@ A new Flutter plugin.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'Kingfisher', '~> 5.0'
+  s.dependency 'Kingfisher', '~> 4.10.1'
 
   s.ios.deployment_target = '9.0'
 end
