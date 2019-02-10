@@ -42,10 +42,12 @@ public struct VideoThumbnailImageProvider: ImageDataProvider {
     public func data(handler: (Result<Data, Error>) -> Void) {
         do {
             let asset = AVURLAsset.init(url: fileURL)
+            
             let imgGenerator = AVAssetImageGenerator(asset: asset)
             imgGenerator.appliesPreferredTrackTransform = true
-            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+            let seconds = CMTimeGetSeconds(asset.duration)
             
+            let cgImage = try imgGenerator.copyCGImage(at: CMTime.init(value: CMTimeValue(seconds / 2), timescale: 1), actualTime: nil)
             
             let thumbnail = UIImage(cgImage: cgImage)
             let data = UIImagePNGRepresentation(thumbnail)!
