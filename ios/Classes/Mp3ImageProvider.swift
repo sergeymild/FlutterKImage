@@ -48,7 +48,7 @@ public struct Mp3ImageProvider: ImageDataProvider {
                     return
                 }
                 handler(Result.success(data))
-                break
+                return
             }
         }
         handler(Result.success(Data(count: 0)))
