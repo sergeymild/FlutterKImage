@@ -77,7 +77,8 @@ public class SwiftKImagePlugin: NSObject, FlutterPlugin {
         
         var options: KingfisherOptionsInfo = [.backgroundDecode]
         if let width = width, let height = height {
-            options.append(.processor(ResizingImageProcessor(referenceSize: CGSize(width: width, height: height))))
+            let cropProcessor = CroppingImageProcessor(size: CGSize(width: width, height: height))
+            options.append(.processor(cropProcessor))
         }
         
         if let pending = tasks.removeValue(forKey: absolutePath.absoluteString) {
