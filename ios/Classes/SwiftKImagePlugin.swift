@@ -38,10 +38,12 @@ public class SwiftKImagePlugin: NSObject, FlutterPlugin {
     let path = dict["path"] as! String
     
     let absolutePath = URL(fileURLWithPath: path)
-    var options: KingfisherOptionsInfo = [.backgroundDecode]
+    var options: KingfisherOptionsInfo = [.backgroundDecode, .scaleFactor(0.8)]
     if let width = width, let height = height {
-        let cropProcessor = CroppingImageProcessor(size: CGSize(width: width, height: height))
-        options.append(.processor(cropProcessor))
+        let resizeProcessor = ResizingImageProcessor(referenceSize: CGSize(width: width, height: height), mode: .aspectFill)
+//        let cropProcessor = CroppingImageProcessor(size: CGSize(width: width, height: height))
+//        options.append(.processor(cropProcessor))
+        options.append(.processor(resizeProcessor))
     }
     
     if let pending = tasks.removeValue(forKey: path) {
@@ -64,7 +66,9 @@ public class SwiftKImagePlugin: NSObject, FlutterPlugin {
         switch res {
         case .success(let data):
             self.queue.async {
-                let jpeg = UIImagePNGRepresentation(data.image)
+                let image = data.image
+                let i = UIImage(cgImage: data.image.cgImage!)
+                let jpeg = UIImagePNGRepresentation(image)
                 result(jpeg)
                 
                 if let pending = self.tasks.removeValue(forKey: absolutePath.absoluteString) {
