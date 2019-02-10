@@ -55,6 +55,8 @@ public class SwiftKImagePlugin: NSObject, FlutterPlugin {
         provider = Mp3ImageProvider(fileURL: absolutePath)
     } else if call.method == "loadImageFromLocalPath" {
         provider = LocalFileImageDataProvider(fileURL: absolutePath)
+    } else if call.method == "fetchVideoThumbnailFromLocalPath" {
+        provider = VideoThumbnailImageProvider(fileURL: absolutePath)
     }
     
     guard let imageProvider = provider else {
