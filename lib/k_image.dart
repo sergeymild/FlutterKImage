@@ -14,6 +14,7 @@ class KImage {
       bool skipFetchDocumentsFolder = true,
       bool isMp3Artwork = false,
       bool isVideoArtwork = false,
+      bool isCircle = false,
       bool debug = false}) async {
     String documentsFolder = "";
     if (!skipFetchDocumentsFolder) {
@@ -24,7 +25,8 @@ class KImage {
       "path": "$documentsFolder$path",
       "width": width,
       "height": height,
-      "quality": quality
+      "quality": quality,
+      "isCircle": isCircle,
     };
     if (debug) {
       if (!skipFetchDocumentsFolder) print('documentsFolder: $documentsFolder');
