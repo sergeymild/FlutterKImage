@@ -42,7 +42,6 @@ public class SwiftKImagePlugin: NSObject, FlutterPlugin {
     if let width = width, let height = height {
         let resizeProcessor = ResizingImageProcessor(referenceSize: CGSize(width: width, height: height), mode: .aspectFill)
         options.append(.processor(resizeProcessor))
-        options.append(.processor(RoundCornerImageProcessor(cornerRadius: CGFloat(width / 2))))
     }
     
     if let pending = tasks.removeValue(forKey: path) {
