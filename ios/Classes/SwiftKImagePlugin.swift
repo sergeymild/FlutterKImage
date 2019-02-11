@@ -41,9 +41,8 @@ public class SwiftKImagePlugin: NSObject, FlutterPlugin {
     var options: KingfisherOptionsInfo = [.backgroundDecode, .scaleFactor(0.8)]
     if let width = width, let height = height {
         let resizeProcessor = ResizingImageProcessor(referenceSize: CGSize(width: width, height: height), mode: .aspectFill)
-//        let cropProcessor = CroppingImageProcessor(size: CGSize(width: width, height: height))
-//        options.append(.processor(cropProcessor))
         options.append(.processor(resizeProcessor))
+        options.append(.processor(RoundCornerImageProcessor(cornerRadius: CGFloat(width / 2))))
     }
     
     if let pending = tasks.removeValue(forKey: path) {
