@@ -93,16 +93,22 @@ public class ImageLoaderJava {
         memCache.evictAll();
     }
 
-    public byte[] generateWebThumbnail(int mediaType, String absolutePath, String name, int width, int height, Runnable doneCallback) {
+    public void generateWebThumbnail(int mediaType, String absolutePath, String name, int width, int height, Runnable doneCallback) {
         byte[] cache = memCache.get(name);
-        if (cache != null) return cache;
+        if (cache != null) {
+            if (doneCallback != null) doneCallback.run();
+            return;
+        }
         ThumbGenerateTaskJava task = thumbGenerateTasks.get(name);
         if (task == null) {
             task = new ThumbGenerateTaskJava(mediaType, absolutePath, name, width, height, doneCallback);
             thumbGenerateTasks.put(name, task);
             thumbGeneratingQueue.submit(task);
             cache = memCache.get(name);
-            if (cache != null) return cache;
+            if (cache != null) {
+                if (doneCallback != null) doneCallback.run();
+                return;
+            }
         } else {
             Integer retryCount = retryCounts.get(name);
             retryCount = retryCount != null ? retryCount : 1;
@@ -114,11 +120,11 @@ public class ImageLoaderJava {
                     thumbGenerateTasks.put(name, task);
                     thumbGeneratingQueue.submit(task);
                     cache = memCache.get(name);
-                    if (cache != null) return cache;
+                    if (cache != null) {
+                        if (doneCallback != null) doneCallback.run();
+                    }
                 }
             }
         }
-
-        return null;
     }
 }
