@@ -4,8 +4,10 @@ import android.os.Environment;
 
 import com.aloha.kimage.loader.AndroidUtilities;
 import com.aloha.kimage.loader.ImageLoaderJava;
+import com.aloha.kimage.loader.LoadImageCallback;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -51,6 +53,8 @@ public class KImagePlugin implements MethodChannel.MethodCallHandler {
 
         } else if (call.method.equals("loadImageFromLocalPath")) {
             type = ImageLoaderJava.MEDIA_DIR_IMAGE;
+        } else if (call.method.equals("fetchVideoThumbnailFromLocalPath")) {
+            type = ImageLoaderJava.MEDIA_DIR_VIDEO;
         }
 
         if (type == -1) {
@@ -59,8 +63,7 @@ public class KImagePlugin implements MethodChannel.MethodCallHandler {
         }
 
         int index = localPath.lastIndexOf('/');
-        String name = localPath.substring(index + 1);
-        byte[] data = ImageLoaderJava.instance.generateWebThumbnail(type, localPath, name, width, height);
-        if (data != null) result.success(data);
+        final String name = localPath.substring(index + 1);
+        ImageLoaderJava.instance.generateWebThumbnail(type, localPath, name, width, height, new LoadImageCallback(name, result));
     }
 }

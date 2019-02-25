@@ -7,8 +7,10 @@ import android.graphics.BitmapFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class ImageLoaderJava {
@@ -20,9 +22,17 @@ public class ImageLoaderJava {
     private static final int retryCountLimit = 3;
 
     Map<String, Integer> retryCounts = new HashMap<>();
-    LruCache memCache;
+    private LruCache memCache;
     private ExecutorService thumbGeneratingQueue = Executors.newFixedThreadPool(3);
     public Map<String, ThumbGenerateTaskJava> thumbGenerateTasks = new HashMap<>();
+
+    public void putInCache(String key, byte[] data) {
+        memCache.put(key, data);
+    }
+
+    public byte[] getFromCache(String key) {
+        return memCache.get(key);
+    }
 
     public Bitmap loadBitmap(String path, float maxWidth, float maxHeight, boolean useMaxScale) {
         if (path == null) return null;
@@ -83,12 +93,12 @@ public class ImageLoaderJava {
         memCache.evictAll();
     }
 
-    public byte[] generateWebThumbnail(int mediaType, String absolutePath, String name, int width, int height) {
+    public byte[] generateWebThumbnail(int mediaType, String absolutePath, String name, int width, int height, Runnable doneCallback) {
         byte[] cache = memCache.get(name);
         if (cache != null) return cache;
         ThumbGenerateTaskJava task = thumbGenerateTasks.get(name);
         if (task == null) {
-            task = new ThumbGenerateTaskJava(mediaType, absolutePath, name, width, height);
+            task = new ThumbGenerateTaskJava(mediaType, absolutePath, name, width, height, doneCallback);
             thumbGenerateTasks.put(name, task);
             thumbGeneratingQueue.submit(task);
             cache = memCache.get(name);
@@ -100,7 +110,7 @@ public class ImageLoaderJava {
                 task.removeTask();
                 retryCounts.put(name, retryCount);
                 if (retryCount < retryCountLimit) {
-                    task = new ThumbGenerateTaskJava(mediaType, absolutePath, name, width, height);
+                    task = new ThumbGenerateTaskJava(mediaType, absolutePath, name, width, height, doneCallback);
                     thumbGenerateTasks.put(name, task);
                     thumbGeneratingQueue.submit(task);
                     cache = memCache.get(name);

@@ -18,20 +18,23 @@ public class ThumbGenerateTaskJava implements Runnable {
     String name;
     int width;
     int height;
+    private Runnable doneCallback;
 
     long startTime = 0;
 
-    public ThumbGenerateTaskJava(int mediaType, String absolutePath, String name, int width, int height) {
+    public ThumbGenerateTaskJava(int mediaType, String absolutePath, String name, int width, int height, Runnable doneCallback) {
         this.mediaType = mediaType;
         this.absolutePath = absolutePath;
         this.name = name;
         this.width = width;
         this.height = height;
+        this.doneCallback = doneCallback;
     }
 
     public void removeTask() {
         if (name == null) return;
         ImageLoaderJava.instance.thumbGenerateTasks.remove(name);
+        doneCallback = null;
     }
 
     @Override
@@ -77,13 +80,13 @@ public class ThumbGenerateTaskJava implements Runnable {
                 return;
             }
 
-            if (width != -1 && height != -1) {
+            if (width != -1 && height != -1 && width != w && height != h) {
                 originalBitmap = SizeTransform.transformResult(originalBitmap, width, height);
             }
 
             if (thumbFile != null && thumbFile.exists() || !new File(absolutePath).exists()) {
-                removeTask();
                 putInCacheAndNotify(originalBitmap);
+                removeTask();
                 return;
             }
 
@@ -97,6 +100,7 @@ public class ThumbGenerateTaskJava implements Runnable {
                 e.printStackTrace();
             }
             putInCacheAndNotify(originalBitmap);
+            removeTask();
         } catch (Exception e) {
             e.printStackTrace();
             removeTask();
@@ -108,6 +112,7 @@ public class ThumbGenerateTaskJava implements Runnable {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         originalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
         byte[] bytes = outputStream.toByteArray();
-        ImageLoaderJava.instance.memCache.put(name, bytes);
+        ImageLoaderJava.instance.putInCache(name, bytes);
+        if (doneCallback != null) doneCallback.run();
     }
 }

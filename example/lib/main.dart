@@ -23,13 +23,12 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: FutureBuilder<MemoryImage>(
               future: KImage.loadFromLocalPath(
-                  path: "Avicii - Wake Me Up (Official Video).mp3",
+                  path: "AlohaUserDownloads/charlotte-coneybeer-108074-unsplash.jpg",
                   width: 300,
                   height: 300,
                   quality: 100,
                   skipFetchDocumentsFolder: false,
-                  debug: true,
-                  isMp3Artwork: true),
+                  debug: true),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Text("load");

@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61768f29-93b8-4c56-86f7-9dde64c05974" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/loader/LoadImageCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/android/src/main/java/com/aloha/kimage/loader/LoadImageCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/k_image.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/k_image.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/KImagePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/KImagePlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/loader/ImageLoaderJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/loader/ImageLoaderJava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/loader/ThumbGenerateTaskJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/loader/ThumbGenerateTaskJava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/.idea/k_image.iml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/.idea/k_image.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/android/src/main/java/com/aloha/kimage/KImagePlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/android/src/main/java/com/aloha/kimage/KImagePlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/android/src/main/java/com/aloha/kimage/loader/ImageLoaderJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/android/src/main/java/com/aloha/kimage/loader/ImageLoaderJava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/android/src/main/java/com/aloha/kimage/loader/ThumbGenerateTaskJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/android/src/main/java/com/aloha/kimage/loader/ThumbGenerateTaskJava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/k_image/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -63,15 +76,15 @@
     <session id="-13574467">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
-          <entry key="project.open.time.0" value="10" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.closed" value="11" />
+          <entry key="project.open.time.0" value="11" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Podfile" value="2" />
-          <entry key="dart" value="7" />
+          <entry key="dart" value="8" />
           <entry key="gradle" value="1" />
           <entry key="h" value="2" />
           <entry key="json" value="1" />
@@ -79,30 +92,30 @@
           <entry key="m" value="1" />
           <entry key="plist" value="1" />
           <entry key="swift" value="2" />
-          <entry key="yaml" value="1" />
+          <entry key="yaml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Dart" value="7" />
+          <entry key="Dart" value="8" />
           <entry key="Groovy" value="1" />
           <entry key="JSON" value="1" />
           <entry key="Kotlin" value="4" />
           <entry key="ObjectiveC" value="3" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="YAML" value="1" />
+          <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dart" value="474" />
+          <entry key="dart" value="496" />
           <entry key="json" value="61" />
           <entry key="kt" value="70" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dart" value="474" />
+          <entry key="Dart" value="496" />
           <entry key="JSON" value="61" />
           <entry key="Kotlin" value="70" />
         </counts>
@@ -111,11 +124,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/k_image.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+            <state relative-caret-position="380">
+              <caret line="37" column="70" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="70" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -124,19 +137,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../flutter/packages/flutter/lib/src/widgets/image.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6766">
-              <caret line="425" column="8" selection-start-line="425" selection-start-column="8" selection-end-line="425" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+            <state relative-caret-position="375">
+              <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -144,17 +148,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="29" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/KImagePlugin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            <state relative-caret-position="195">
+              <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -180,15 +175,15 @@
         <option value="$PROJECT_DIR$/android/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/example/ios/Pods/Local Podspecs/k_image.podspec.json" />
         <option value="$PROJECT_DIR$/lib/k_image.dart" />
-        <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/android/src/main/kotlin/com/aloha/kimage/Mp3Cover.kt" />
         <option value="$PROJECT_DIR$/android/src/main/kotlin/com/aloha/kimage/KImagePlugin.kt" />
+        <option value="$PROJECT_DIR$/example/lib/main.dart" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2" />
-    <option name="y" value="23" />
+    <option name="x" value="8" />
+    <option name="y" value="73" />
     <option name="width" value="1640" />
     <option name="height" value="1027" />
   </component>
@@ -200,75 +195,54 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="k_image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="k_image" type="462c0819:PsiDirectoryNode" />
+              <item name="FlutterKImage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FlutterKImage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="k_image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="k_image" type="462c0819:PsiDirectoryNode" />
+              <item name="FlutterKImage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FlutterKImage" type="462c0819:PsiDirectoryNode" />
               <item name="android" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="k_image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="k_image" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="k_image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="k_image" type="462c0819:PsiDirectoryNode" />
+              <item name="FlutterKImage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FlutterKImage" type="462c0819:PsiDirectoryNode" />
               <item name="android" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="k_image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="k_image" type="462c0819:PsiDirectoryNode" />
+              <item name="FlutterKImage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FlutterKImage" type="462c0819:PsiDirectoryNode" />
               <item name="android" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="k_image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="k_image" type="462c0819:PsiDirectoryNode" />
+              <item name="FlutterKImage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FlutterKImage" type="462c0819:PsiDirectoryNode" />
               <item name="android" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="k_image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="k_image" type="462c0819:PsiDirectoryNode" />
+              <item name="FlutterKImage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FlutterKImage" type="462c0819:PsiDirectoryNode" />
               <item name="android" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="aloha" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="k_image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="k_image" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="aloha" type="462c0819:PsiDirectoryNode" />
-              <item name="kimage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
         <option name="show-excluded-files" value="false" />
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -310,10 +284,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2" y="23" width="1640" height="1027" extended-state="0" />
+    <frame x="8" y="73" width="1640" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24307305" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19023779" />
       <window_info id="Captures" order="1" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -322,7 +296,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32941177" />
-      <window_info anchor="bottom" id="Run" order="1" weight="0.44759825" />
+      <window_info active="true" anchor="bottom" id="Run" order="1" visible="true" weight="0.4459893" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Android Profiler" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="4" />
@@ -458,16 +432,6 @@
     <entry file="file://$PROJECT_DIR$/example/ios/Pods/Local Podspecs/k_image.podspec.json" />
     <entry file="file://$PROJECT_DIR$/android/src/main/kotlin/com/aloha/kimage/Mp3Cover.kt" />
     <entry file="file://$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/KImagePlugin.kt" />
-    <entry file="file://$PROJECT_DIR$/lib/k_image.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../flutter/packages/flutter/lib/src/widgets/image.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6766">
@@ -475,24 +439,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
+    <entry file="file://$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/KImagePlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+        <state relative-caret-position="68">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="29" />
+        <state relative-caret-position="195">
+          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/android/src/main/java/com/aloha/kimage/KImagePlugin.java">
+    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="375">
+          <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/k_image.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="37" column="70" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
